@@ -155,11 +155,11 @@
 \newtheorem{notation}[theorem]{Notation}
 \newtheorem*{notation*}{Notation}
 %FINAL
-\newcommand{\due}{12 February 2017} 
+\newcommand{\due}{26 February 2017} 
 \RequirePackage{geometry}
 \geometry{margin=.7in}
 \usepackage{todonotes}
-\title{MATH 8302 Homework I}
+\title{MATH 8302 Homework II}
 \author{David DeMark}
 \date{\due}
 \usepackage{fancyhdr}
@@ -226,264 +226,18 @@
 \newcommand{\aut}{\mathrm{Aut}}
 \newcommand{\del}{\partial}
 \newcommand{\RP}{{\RR\mathrm{P}}}
+\newcommand{\CP}{{\CC\mathrm{P}}}
 \newcommand{\csm}{\RP^n\#\RP^n}
 \DeclareMathOperator{\coker}{coker}
+\newcommand{\idl}[1]{\langle #1\rangle}
 \begin{document}
 \maketitle
-%\emph{Collaborators: Sarah Brauner.}
-
-\noindent\textbf{All references to theorems come from Allen Hatcher's \emph{Algebraic Topology} unless otherwise stated.}
-\prob{1} We let $p\in \RP^n$, $D\ni p$ a small open disk, $S:=\del D \cong S^{n-1}$, and $X:=\RP^n\setminus D$.  
-\prt{1} \begin{proposition*}
-	$X\simeq \RP^{n-1}$.
+\prob{1}\prt{1}\begin{proposition*}
+	We let $f:\CP^n\to \CP^n$ be a continuous map with the property that $f^*:H^2(\CP^n,\ZZ)\to H^2(\CP^n,\ZZ)\cong \ZZ$ is the multiplication-by-$d$ map for some $d\in \ZZ$. Then, $f^*:H^k(\CP^n,\ZZ)\to H^k(\CP^n,\ZZ)$ is the multiplication-by-$d^m$ map for $n=2m$ and the zero map otherwise.
 \end{proposition*}
 \begin{proof}
-	We let $\pi: S^n\to \RP^n$ be such that $\pi^{-1}(p)=\{\pm (1,0,\ldots,0)\}$. We shall show that $S^n\setminus \pi^{-1}(D)\simeq S^{n-1}$ via a homotopy $\tH:\left(S^n\setminus \pi^{-1}(D)\right)\times [0,1]\to S^n\setminus \pi^{-1}(D)$ with $\tH_t(\vec{x})=-\tH_t(-\vec{x})$. We give $\tH$ explicitly, letting 
-	$$\tH_t(x_0,\ldots,x_n)=\frac{1}{\norm{(1-t)x_0,x_1,x_2,\ldots,x_n}}\left((1-t)x_0,x_1,x_2,\ldots,x_n\right)$$
-	Then, $\tH_1(S^n\setminus \pi^{-1}(D))=S^{n-1}=\{\vec{x}\in S^n\;:\; \vec{x}=(0,x_1,\ldots,x_n)\}$, and it is immediately clear from construction that $\tH_t(-\vec{x})=-\tH_t(\vec{x})$. Hence, $\tH$ factors through the quotient map to $\RP^n\setminus D$ giving a homotopy equivalence $H:\RP^n\times [0,1]\to (S^{n-1}/\sim)\cong \RP^{n-1}$.
-\end{proof}
-\prt{2}
-\begin{proposition*}The inclusion $\iota:S\to \RP^n\setminus D$ induces the map $\iota_*:H_*(S)\to H_*(X)$ where $\iota_*:H_{n-1}(S)\cong \ZZ\to H_{n-1}(X)\cong \ZZ$ is the multiplication-by-two map if $n$ is even, $\iota_*:H_0(S)\to H_0(S)$ is the identity map, and the $0$ map otherwise. \end{proposition*}
-\begin{proof}
-	That $\iota_*$ is the identity map on $H_0$ is trivial. If $n$ is odd, then $H_{n-1}(X)=0$, so $\iota_*:H_{n-1}(S)\to H_{n-1}(X)$ is necessarily the 0 map, and if $m\neq 0,n-1$, $H_m(S)=0$. Thus, the only interesting case is that of $\iota_*:H_{n-1}(S)\to H_{n-1}(X)$ in the case that $n$ is even.
-	Theorem 2.13 gives that since $S$ is a deformation retract of a neighborhood in $X$, there is a long exact sequence $$\begin{tikzcd}
-	\ldots \arrow[r]&\tH_m(S)\arrow[r,"\iota_*"]&\tH_m(X)\arrow[r]&\tH_m(X/D)\arrow[r]&\tH_{m-1}(S)\arrow[r]&\ldots
-	\end{tikzcd}$$
-	We note that $X/D\cong \RP^n$ and recall from problem 1 that $X\simeq \RP^{n-1}$. Thus, we in fact have an exact sequence (up to isomorphism)
-	$$\begin{tikzcd}
-	\ldots \arrow[r]&\tH_m(S^{n-1})\arrow[r,"\iota_*"]&\tH_m(\RP^{n-1})\arrow[r]&\tH_m(\RP^n)\arrow[r]&\tH_{m-1}(S^{n-1})\arrow[r]&\ldots
-	\end{tikzcd}$$
-	As $n$ is even, $\tH_n(\RP^n)=0$ and $\tH_{n-1}(\RP^n)\cong\ZZ/2$, giving us the short exact sequence
-		$$\begin{tikzcd}
-\tH_n(\RP^n)\arrow[r]\arrow[d,"\cong"]&\tH_{n-1}(S^{n-1})\arrow[d,"\cong"]\arrow[r,"\iota_*"]&\tH_{n-1}(\RP^{n-1})\arrow[r]\arrow[d,"\cong"]&\tH_{n-1}(\RP^{n})\arrow[r]\arrow[d,"\cong"]&\tH_{n-2}(S^{n-1})\arrow[d,"\cong"]\\
-0\arrow[r]&\ZZ\arrow[r,"\iota_*"]&\ZZ\arrow[r]&\ZZ/2\arrow[r]&0
-	\end{tikzcd}$$
-	Thus, by exactness we may conclude that $\iota_*$ is the multiplication-by-two map.
-\end{proof}
-\prt{3}\begin{proposition*}
-	\begin{equation*}
-		H_m(\RP^{n}\#\RP^n)=\begin{cases}
-		\ZZ\oplus \ZZ& m=n\equiv 1\mod 2\\
-		\ZZ/2\oplus \ZZ & m=n-1\equiv 1 \mod 2\\
-		\ZZ/2 \oplus \ZZ/2 &0<m<n,\, m\equiv 1 \mod 2\\
-		\ZZ& m=0\\
-		0& \text{otherwise}
-		\end{cases}
-	\end{equation*}
-\end{proposition*}
-\begin{proof}
- We note that $\RP^n\#\RP^n$ can be constructed from two copies of $X$ by gluing along a neighborhood of $S$. Hence, we have the Mayer\textemdash Vietoris sequence
-\begin{equation}\begin{tikzcd}
-\ldots \arrow[r]&H_m(S)\arrow[r]& H_m(X)\oplus H_m(X)\arrow[r]& H_m(\csm)\arrow[r] &H_{m-1} (S)\arrow[r]&\ldots\label{mv}
-\end{tikzcd}\end{equation}
-We note that when $1<m<n-1$, $H_m(S)$ and $H_{m-1}(S)$ are both $0$. By exactness, the diagram of \eqref{mv} then induces an isomorphism $H_m(\csm)\cong H_m(X)\oplus H_m(X)$. When $m=1$, we are in the case of \eqref{mv01}:
-\begin{equation}\begin{tikzcd}[column sep=small]
-\ldots \arrow[r]&H_1(S)\arrow[r]& H_1(X)\oplus H_1(X)\arrow[r]& H_1(\csm)\arrow[r] &H_{0} (S)\arrow[r]&H_0(X)\oplus H_0(X)\arrow[r]& H_0(\csm)\arrow[r]& 0\label{mv01}
-\end{tikzcd}\end{equation}
-We note that $H_1(S)=0$ the map $H_0(S)\to H_0(X)\oplus H_0(x)$ is necessarily injective. Hence, despite $H_0(S)\neq 0$, we still have that $H_1(\csm)\cong H_1(X)\oplus H_1(X)\cong \ZZ/2\oplus \ZZ/2$. Thus, we now have that for $0<m<n-1$, 
-\begin{equation*}
-	H_m(\RP^{n}\#\RP^n)=\begin{cases}
-\ZZ/2 \oplus \ZZ/2 &0<m<n-1,\, m\equiv 1 \mod 2\\
-0& 0<m<n-1, \text{ otherwise}.
-\end{cases}
-\end{equation*}
-
-We now consider the case $m=n$ with $n$ odd. We then have the diagram of \eqref{mvno}
-\begin{equation}
-	\label{mvno}\begin{tikzcd}[column sep=small]
-	\ldots \arrow[r]& H_n(X)\oplus H_n(X)\arrow[r]& H_n(\csm)\arrow[r] &H_{n-1} (S)\arrow[r]&H_{n-1}(X)\oplus H_{n-1}(X)\arrow[r]& H_{n-1}(\csm)\arrow[r]& 0
-	\end{tikzcd}
-\end{equation}
-As $X\cong \RP^{n-1}$, we have that $H_n(X)=0=H_{n-1}(X)$ with this last inequality owing to the fact that $n-1$ is even. We also note that $H_{n-2}(S)=0$ and $H_{n-1}(S)=\ZZ$. Thus, we may replace the diagram of \eqref{mvno} with the isomorphic diagram of \eqref{mvno1}.
-\begin{equation}
-\label{mvno1}\begin{tikzcd}[column sep=normal]
-0\arrow[r]& H_n(\csm)\arrow[r] &\ZZ\arrow[r]&0\arrow[r]& H_{n-1}(\csm)\arrow[r]& 0
-\end{tikzcd}
-\end{equation}
-Thus, when $n$ is odd, we have that $H_n(\csm)=\ZZ$ and $H_{n-1}(\csm)=0$. Finally, we investigate $m=n,n-1$ in the case $n$ is even:
-\begin{equation}
-\begin{tikzcd}[column sep=small]
-\ldots \arrow[r]& H_n(X)\oplus H_n(X)\arrow[r]& H_n(\csm)\arrow[r] &H_{n-1} (S)\arrow[r]&H_{n-1}(X)\oplus H_{n-1}(X)\arrow[r]& H_{n-1}(\csm)\arrow[r]& H_{n-2}(S)\arrow[r]&\ldots
-\end{tikzcd}\label{mvne}
-\end{equation}
-We note that $H_n(X)=0$ as before, $H_{n-1}(X)=\ZZ$ as $n-1$ is odd, and $H_{n-2}(S)=0$ $H_{n-1}(S)=\ZZ$. Thus, filling in \eqref{mvne} with isomorphisms, we have:
-\begin{equation}
-\begin{tikzcd}[column sep=normal]
-0\arrow[r]& H_n(\csm)\arrow[r] &\ZZ \arrow[r,"\iota_*\oplus\iota_*"]&\ZZ\oplus \ZZ\arrow[r]& H_{n-1}(\csm)\arrow[r]&0
-\end{tikzcd}\label{mvnei}
-\end{equation}
-Thus, $H_n(\csm)\cong \ker(\iota_*\oplus \iota_*)=0$, and $H_{n-1}(\csm)\cong \coker(\iota_*\oplus \iota_*)\cong \ZZ\oplus \ZZ/2$. This completes our proof.
-\end{proof}
-\prob{2} For this problem, we take $S^0=\{v_1,v_2\}$ under the discrete topology where each $v_k$ is a $0$-cell.
-\prt{1}\begin{prompt*}
-	Find a generator for $\tH_0(S^0)$. 
-\end{prompt*}
-\begin{proof}[Response]
-	We recall that as $\ker d_0=C^\mathrm{cw}_0(S^0)$ and $\im\left(d_1:C^\mathrm{cw}_1(S^0)\to C^{\mathrm{cw}}_0(S^0)\right)=0$, $H_0(S^0)=C_0^\mathrm{cw}(S^0)=\ZZ\{v_1,v_2\}$. Then, $\tH_0(S^0)=H_0(S^0)/(v_1+v_2)\cong \ZZ$. As $\tH_0(S^0)$ has rank 1 and $v_1$ (a generator of $\tH_0(S^0)$) is not in the kernel of the quotient, $v_1$ generates $\tH_0(S^0)$ (with $v_2\mapsto -v_1$ in the map $H_0(S^0)\to \tH_0(S^0)$). 
-\end{proof}
-\prt{2}\begin{prompt*}
-	Enumerate the set of continuous maps $S_0\to S_0$ and compute their degree.
-\end{prompt*}
-\begin{proof}[Response]
-	We note that any map $S_0\to S_0$ is continuous, as $S_0$ is discrete and hence the preimage of any set in $S_0$ is a subset of $S_0$ and therefore open. As there are two elements in both domain and target, there are then four maps which we label $t^{ij}$ with $i,j\in \{1,2\}$ such that $t^{ij}:v_1\mapsto v_i,\,v_2\mapsto v_j$. Then, $\deg t^{11}=\deg t^{22}=0$ as each $t^{ii}$ fails to be surjective. $t^{12}$ is the identity map and hence has degree 1. Finally, $t^{21}_*$ maps $v_1\mapsto v_2=-v_1$, so $\deg t^{21}=-1$.
-\end{proof}
-\prob{3}N/A (Problem de-assigned)
-
-\prob{4} We let $X$ be the quotient space of the cube $I^3$ where opposite faces are identified with a quarter-twist.
-\prt{1}
-\begin{proposition*}
-	$X$ supports a CW-structure with two 0-cells, four 1-cells, three 2-cells, and one 3-cell.
-\end{proposition*}
-\begin{proof}
-	We refer to \eqref{1id} to label the vertices, edges, and faces of the cube:
-	\begin{equation}
-	\begin{tikzcd}[column sep=normal]
-	&&v_{3}\arrow[dd,"e_{22}",swap]\arrow[rr,"e_{12}"]		&&v_{4}\arrow[dd,"e_{23}"]		&&\\
-	%
-	%
-	&&&		\circlearrowleft F_1&&&\\
-	%
-	%
-	v_{3}\arrow[dd,"e_{82}^{-1}",swap]\arrow[rr,"e_{22}"]
-	&&v_{1}\arrow[dd,"e_{42}"]\arrow[rr,"e_{32}"]&&v_{2}	\arrow[dd,"e_{43}"]\arrow[rr,"e_{23}^{-1}"]	&&v_{4}\arrow[dd,"e_{83}^{-1}"]\\
-	%
-	%
-	&	\circlearrowleft F_2	&&	\circlearrowleft F_3	&&\circlearrowright	F_4	&\\
-	%
-	%
-	v_{7}\arrow[rr,"e_{62}^{-1}",swap]	&&v_{5}	\arrow[dd,"e_{62}",swap]\arrow[rr,"e_{52}"]	&&v_{6}\arrow[dd,"e_{63}"]\arrow[rr,"e_{63}",swap]		&&v_{8}\\
-	%
-	%
-	&&&	\circlearrowright F_5	&&&\\
-	%
-	%
-	&&v_{7}\arrow[dd,"e_{82}",swap]\arrow[rr,"e_{72}"]		&&v_{8}\arrow[dd,"e_{83}"]	&&\\
-	%
-	%
-	&&&	\circlearrowright F_6	&&&\\
-	%
-	%		
-	&&v_{3}\arrow[rr,"e_{12}",swap]		&&v_{4}		&&	
-	\end{tikzcd}\label{1id}
-	\end{equation}
-	Obviously, what is not pictured is the presence of one 3cell. We identify $F_1\sim F_5$, $F_2\sim F_4$ and $F_3\sim F_6$ in the orientations shown in \eqref{1id} by the following edge identifications:\newline
-	($F_1\sim F_5$): \begin{itemize*}
-		\item $e_{12}\sim e_{62}$ \item $e_{22}\sim e_{52}$ \item $e_{23}\sim e_{72}$ \item $e_{32}\sim e_{63}$
-	\end{itemize*}\newline	
-	($F_2\sim F_4$): \begin{itemize*}
-		\item $e_{22}\sim e_{83}$ \item $e_{82}^{-1}\sim e_{63}^{-1}$ \item $e_{42}\sim e_{23}$ \item $e_{62}^{-1}\sim e_{43}^{-1}$
-	\end{itemize*}\newline	
-	($F_3\sim F_6$): \begin{itemize*}
-		\item $e_{32}\sim e_{82}$ \item $e_{42}\sim e_{72}$ \item $e_{43}\sim e_{12}$ \item $e_{52}\sim e_{83}$
-	\end{itemize*}\newline
-	From these identifications, we may collapse our notation for the edges and faces by identifying the labeling of identified cells. That is, we let:\begin{itemize}
-		\item $e_1^2=F_1=F_5$
-		\item $e_2^3=F_2=F_4$
-		\item $e_3^2=F_3=F_6$
-		\item$e_a^1=e_{82}^{-1}=e_{63}^{-1}=e_{32}^{-1}$
-		\item $e_{b}^1=e_{23}=e_{72}=e_{42}$
-		\item $e_c^1=e_{22}=e_{52}=e_{83}$
-		\item $e_d^1=e_{12}^{-1}=e_{62}^{-1}=e_{43}^{-1}$
-	\end{itemize}
-	It is clear from the list of edge identifications that this is the coarsest possible relabeling, thus confirming that there are three 2-cells and four 1-cells
-	We relabel \eqref{1id} appropriately:
-	\begin{equation}
-	\begin{tikzcd}[column sep=normal]
-	&&v_{3}\arrow[dd,"e_c^1",swap]\arrow[rr,"e_d^1",leftarrow]		&&v_{4}\arrow[dd,"e_b^1"]		&&\\
-	%
-	%
-	&&&		\circlearrowleft e_1^2&&&\\
-	%
-	%
-	v_{3}\arrow[dd,"e_a^1",swap]\arrow[rr,"e_c^1"]
-	&&v_{1}\arrow[dd,"e_b^1"]\arrow[rr,"e_a^1",leftarrow]&&v_{2}	\arrow[dd,"e_d^1",leftarrow]\arrow[rr,"e_b^1",leftarrow]	&&v_{4}\arrow[dd,"e_c^1",leftarrow]\\
-	%
-	%
-	&	\circlearrowleft e_2^3	&&	\circlearrowleft e_3^2	&&\circlearrowright e_2^3	&\\
-	%
-	%
-	v_{7}\arrow[rr,"e_d^1",swap]	&&v_{5}	\arrow[dd,"e_d^1",swap,leftarrow]\arrow[rr,"e_c^1"]	&&v_{6}\arrow[dd,"e_a^1",leftarrow]\arrow[rr,"e_a^1",swap,leftarrow]		&&v_{8}\\
-	%
-	%
-	&&&	\circlearrowright e_1^2	&&&\\
-	%
-	%
-	&&v_{7}\arrow[dd,"e_a^1",swap,leftarrow]\arrow[rr,"e_b^1"]		&&v_{8}\arrow[dd,"e_c^1"]	&&\\
-	%
-	%
-	&&&	\circlearrowright e_3^2	&&&\\
-	%
-	%		
-	&&v_{3}\arrow[rr,"e_d^1",swap,leftarrow]		&&v_{4}		&&	
-	\end{tikzcd}\label{3id}
-	\end{equation}
-	Now, to count the 0-cells, we let $e^0_A$ denote the vertex at the head of $e_a^1$ and $e_B^0$ the vertex at its tail. We now have \begin{itemize}
-		\item $e^0_A=v_1=v_7=v_6$
-		\item $e^0_B=v_2=v_3=v_8$
-	\end{itemize}
-	We note that both $v_5$ and $v_3$ are at the tail of $e_2^c$, hence $v_5=e^0_B$. Similarly, both $v_4$ and $v_1$ are at the head of $e_2^c$. Thus, $v_4=e^0_A$. We again relabel appropriately:\\
-	\begin{equation}
-	\begin{tikzcd}[column sep=normal]
-	&&e^0_B\arrow[dd,"e_c^1",swap]\arrow[rr,"e_d^1",leftarrow]		&&e^0_A\arrow[dd,"e_b^1"]		&&\\
-	%
-	%
-	&&&		\circlearrowleft e_1^2&&&\\
-	%
-	%
-	e^0_B\arrow[dd,"e_a^1",swap]\arrow[rr,"e_c^1"]
-	&&e^0_A\arrow[dd,"e_b^1"]\arrow[rr,"e_a^1",leftarrow]&&e^0_B	\arrow[dd,"e_d^1",leftarrow]\arrow[rr,"e_b^1",leftarrow]	&&e^0_A\arrow[dd,"e_c^1",leftarrow]\\
-	%
-	%
-	&	\circlearrowleft e_2^3	&&	\circlearrowleft e_3^2	&&\circlearrowright e_2^3	&\\
-	%
-	%
-	e^0_A\arrow[rr,"e_d^1",swap]	&&e^0_B	\arrow[dd,"e_d^1",swap,leftarrow]\arrow[rr,"e_c^1"]	&&e^0_A\arrow[dd,"e_a^1",leftarrow]\arrow[rr,"e_a^1",swap,leftarrow]		&&e^0_B\\
-	%
-	%
-	&&&	\circlearrowright e_1^2	&&&\\
-	%
-	%
-	&&e^0_A\arrow[dd,"e_a^1",swap,leftarrow]\arrow[rr,"e_b^1"]		&&e^0_B\arrow[dd,"e_c^1"]	&&\\
-	%
-	%
-	&&&	\circlearrowright e_3^2	&&&\\
-	%
-	%		
-	&&e^0_B\arrow[rr,"e_d^1",swap,leftarrow]		&&e^0_A		&&	
-	\end{tikzcd}\label{4id}
-	\end{equation}
-	We note that $e^0_A$ is always at the head of $e_a^1$ and $e_c^1$ and the tail of $e_b^1$ and $e_d^1$ while $e^0_B$ is always at the tail of $e_a^1$ and $e_c^1$ and the head of $e_b^1$. Hence, they are distinct and we have completed our proof.
+ We have that under the ring structure endowed upon $H^*(\CP^n,\ZZ)$ by addition and the cup product, $H^*(\CP^n,\ZZ)\cong \ZZ[c]/\idl{c^{n+1}}$ where $\deg c=2$. 
 \end{proof}
 
-\prt{2}
-\begin{proposition*}
-	\begin{equation*}
-	H_m(X)=\begin{cases}
-	\ZZ&m=3,0\\
-	(\ZZ/2)^3&m=1\\0&\text{ otherwise}
-	\end{cases}
-	\end{equation*}
-\end{proposition*}
-\begin{proof}
-	We label our $3$-cell by $e_\alpha^3$	We claim that $d_3:C_3(X)\to C_2(X)$ is the $0$-map. Indeed, we compute $d_{\alpha i}$ with $i=1,2,3$ as follows: we note that compatible quotient maps commute, and thus let the map $\del e_\alpha^3\to e_i^2/(\del e_i^2)$ factor through $e_i^2\sqcup {e_i^2}'/(\del e_i^2\sim \del {e_i^2}')\cong S^2$, that is the $S^2$ acquired by collapsing all identifications in $X^2$ except for $e_i^2\sim {e_i^2}'$, that is we fail only to collapse the two copies of the 2-cell $e_i^2$, but do indeed identify the boundary of each $e_i^2$ with that of the corresponding $e_i^2$. The degree of this map is clearly 1, as it is homotopic to the identity as it only consists of collapsing some part of $\del e_\alpha^3$ to its equator. Then, the map $e_i^2\sqcup {e_i^2}'/(\del e_i^2\sim \del {e_i^2}')\to e_i^2/\del e_i^2$ is the quotient map identifying points across the reflection across the equator $\del e_i^2$ and collapsing the equator to a single point. This map is homotopic to a constant map, thus showing $d_{\alpha i}=0$ and hence $d_3\equiv 0$. This shows $H_3(X)=\ZZ$.
-	
-	Next, we compute $d_{i k}$ where $i=1,2,3$ and $k=a,b,c,d$. Here, we may rely on known properties of boundary maps and note that the coefficients $d_{i k}$ will depend only on the orientation of $e_k^1$ relative to $e_i^2$ and choose our orientation such that $\del F_3=e_a^1+e_b^1+e_c^1+e_d^1$. Then, comparing orientations, we can compute a matrix for $d_2$ as \begin{equation*}
-	d_2=\begin{pmatrix}
-	-1&1&1\\
-	-1&-1&1\\
-	1&-1&1\\
-	1&1&1
-	\end{pmatrix}
-	\end{equation*}
-	where columns are indexed by $e_1^2,e_2^2,e_3^2$ and rows by $e_a^1$,$e_b^1$,$e_c^1,e_d^1$ respectively. A quick calculation shows the upper $3\times3$ minor is nonsingular and hence $d_2$ is an injection. Thus, $H_2(X)=0$.
-	
-	Computing $d_1$ is much the same. We choose generators so that $\del e_a^1=e_A^0-e_B^0$. Then, a matrix for $d_1$ is given by 
-	$$d_1=\begin{pmatrix}
-	1&-1&1&-1\\
-	-1&1&-1&1
-	\end{pmatrix}$$
-	where here rows are indexed by $e_A^0,e_B^0$ and columns by $e_a^1$,$e_b^1$,$e_c^1,e_d^1$ respectively. Each column is a $\pm 1$-multiple of the leftmost column, so $d_1$ thus has kernel of rank 3. We give explicit basis of (the transpose of) $t_1=(1,1,0,0)$, $t_2=(0,1,1,0)$ and $t_3=(0,0,1,1)$. We have that the image of $d_2$ is generated by $s_1=(-1,-1,1)=t_3-t_1$, $s_2=(1,-1,-1,1)=t_1+t_3-2t_2$ and $s_3=(1,1,1,1)=t_1+t_3$. Then, $2t_1=s_3-s_1\in \im d_2$, $2t_2=s_3-s_2\in \im d_2$ and $2t_3=s_1+s_3\in \im d_2$. Hence, $H_1(X)=(\ZZ/2)^3$ as $H_1(X)$ is an Abelian group with three generators each of order 2. 
-	
-	Finally, we note that $H_0(X)=\ZZ$ as $X$ is path-connected. 
-\end{proof}
+
 \end{document}
