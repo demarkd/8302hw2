@@ -279,7 +279,59 @@ Thus, the odd terms in the summation for $\tau(f)$ uniformly vanish and we are l
 \begin{proof}
 We say $f$ is orientation-reversing on $\CP^n$ if $f^*$ is multiplication by a negative number on $H_{2n}(\CP^n)$. As we have already seen, $f^*$ is the multiplication-by-$d^n$ map on $H_{2n}(\CP^n)$. Thus, if $n$ is even, $d^n$ is necessarily nonnegative and $f$ is not orientation-reversing.
 \end{proof}
-\prob{2}
+\prob{2}\prt{1}
+\begin{notation}
+ We provide the following notational conventions dealing maps induced by the universal property of the product.
+ \begin{itemize}
+ 	\item For two maps $f:X\to Y$, $g:X\to Z$, we denote the map induced from $f,g$ as $f\times g:X\to Y\times Z$ mapping $x\mapsto (f(x),g(x))$.
+ 	\item For two maps $f:X\to  W$ and $g:Y\to Z$ we denote the map $X\times Y\to W\times Z$ given by $(x,y)\mapsto (f(x),g(y))$ as $(f,g)$. 
+ \end{itemize}
+\end{notation}
+We begin with a key lemma.
+\begin{lemma}\label{2alem}
+	We let $f:\RR^k\to \RR^n$, $g:\RR^k\to \RR^m$ be smooth maps. Then, letting $F:=f\times g:\RR^k\to \RR^{n}\times \RR^m$, $dF_x:\RR^k\to \RR^{n+m}$ is the map $df_x\times dg_x$. 
+\end{lemma}\begin{subproof}[Proof of Lemma \ref{2alem}]
+We let $f=(f_1,\ldots,f_n)$ and $g=(g_1,\dots,g_m)$ where each $f_i,g_j$ is a smooth map $\RR^k\to \RR$. Then, $F=(f_1,\ldots,f_n,g_1,\dots,g_n)$, that is $F_i=f_i$ for $0\leq i\leq n$ and $F_k=g_{k-n}$ for $n<k\leq n+m$. The map $dF_x$ is given by a matrix \begin{equation*}dF_x=
+\left(\pydx{F_i}{x_j}(x)\right)_{ij}=\begin{pmatrix}
+\left(\pydx{f_i}{x_j}(x)\right)_{ij}\\\hline
+\left(\pydx{g_i}{x_j}(x)\right)_{ij}
+\end{pmatrix}=\begin{pmatrix}df_x
+\\\hline
+dg_x
+\end{pmatrix}=df_x\times dg_x
+\end{equation*}
+\end{subproof}
+\begin{corollary}\label{Cor:tsprod}
+	For $X,Y$ smooth manifolds $x\in X$, $y\in Y$, the tangent space $T_{(x,y)}X\times Y=T_xX\times T_yY$.
+\end{corollary}
+\begin{subproof}[Proof of Corollary \ref{Cor:tsprod}]
+Let $U\to X$, $V\to Y$ parametrize a neighborhood of $x$ and $y$ respectively. Then, $U\times V\to X\times Y$ parametrizes a neighborhood $(x,y)$ and the corollary follows from the lemma. 
+\end{subproof}
+
+\begin{proposition*}
+We let $f:X\to Y$ be a smooth map and $F:X\to X\times Y$ be the map $F=\id\times f$. Then, $dF_x:T_xX\to T_{(x,f(x))}X\times Y$ is the map $\id\times df_x$. 
+\end{proposition*}
+\begin{proof}
+We let $U$ and $V$ parametrize a neighborhood of $x,f(x)$ respectively. We let $g$ be the composition $\psi^{-1}\circ f\circ \phi$ in the commutative diagram of \eqref{indg2a}
+\begin{equation}
+	\label{indg2a}
+	\begin{tikzcd}[row sep=small]
+	\RR^n&\RR^m\\
+	X\arrow[r,"f"]\arrow[u,"\iota_X",hookrightarrow]&Y\arrow[u,"\iota_Y",hookrightarrow]\\&&\\
+	U\arrow[uu,"\phi"]\arrow[r,"g",dashrightarrow]&V\arrow[uu,"\psi"]
+	\end{tikzcd}
+\end{equation}
+Then, $df_x=d(i\circ \psi)_{g(\phi^{-1}(x))}\circ dg_{\phi^{-1}(x)}$, that is it is the projection to the tangent space by the isomorphism $d(i\circ \psi)_{g(\phi^{-1}(x))}$ of the derivative of $g$.  Then, by the lemma, we have that $dF_x=d((\iota_X,\iota_Y)\circ (\phi,\psi)\circ \id\times g)_{\phi^{-1}(x)}=d\left((\iota_X\circ \phi\circ \id)\times(\iota_Y\circ \psi\circ g)\right)_{\phi^{-1}(x)}$ can be rewritten as $d(\iota_X\circ \phi\circ \id)_{\phi^{-1}(x)}
+\times d(\iota_Y\circ \psi\circ \id)_{\phi^{-1}(x)}=d\id_x\times df_x=\id\times df_x$ as desired.
+\end{proof}
+
+\prt{2}
+\begin{proposition*}
+	The tangent space to the graph $Z$ of $f:X\to Y$ at the point $(x,f(x))$ is the graph of $df_x:T_xX\to T_{f(x)}Y$. 
+\end{proposition*}
+\begin{proof}
+	We keep all labelling conventions of part a. We give $Z\subset X\times Y$ the description $Z=\{(x,y)\in X\times Y\;:\;y=f(x)\}$. Then, letting $\phi:U\to X$ be a parametrization of a neighborhood of $x$ mapping $0\mapsto x$, we let $\bar\phi:U\to Z$ be the map $\phi\times (\psi\circ g)$ and have that $\bar\phi$ is indeed a parametrization of $Z$ around $(x,f(x))$. Then, by Lemma \ref{2alem}, $T_{(x,f(x))}Z=\im (d\phi_0\times df_x)\subset T_xX\times T_{f(x)}Y$ with this last containment by Corollary \ref{Cor:tsprod}. We let $v\in T_xX$ and have that as a map $T_xX\to T_xX$, $d\phi_0$ is the identity by (\dots definition?).  Thus, $d\phi_0\times df_x:v\mapsto (v,df_x(v))$, so $T_{(x,f(x))}Z=\{(v,df_x(v))\;:\; v\in T_xX\}$, i.e. the graph of $df_x$. 
+\end{proof}
 \prob{3}
 \begin{proposition*}
 	We let $p:\RR^k\to \RR$ be a homogeneous degree-$m$ polynomial, and $V_a=p^{-1}(a)$ where $0\neq a\in \RR$. Then, $V_a$ is a submanifold of $\RR^k$ of dimension $k-1$ and for $a\neq b$ with $ab>0$, $V_a$ and $V_b$ are diffeomorphic.
