@@ -230,14 +230,67 @@
 \newcommand{\csm}{\RP^n\#\RP^n}
 \DeclareMathOperator{\coker}{coker}
 \newcommand{\idl}[1]{\langle #1\rangle}
+\renewcommand{\thetheorem}{\arabic{section}.\Alph{theorem}}
+\DeclareMathOperator{\ext}{Ext}
 \begin{document}
 \maketitle
 \prob{1}\prt{1}\begin{proposition*}
-	We let $f:\CP^n\to \CP^n$ be a continuous map with the property that $f^*:H^2(\CP^n,\ZZ)\to H^2(\CP^n,\ZZ)\cong \ZZ$ is the multiplication-by-$d$ map for some $d\in \ZZ$. Then, $f^*:H^k(\CP^n,\ZZ)\to H^k(\CP^n,\ZZ)$ is the multiplication-by-$d^m$ map for $n=2m$ and the zero map otherwise.
+	We let $f:\CP^n\to \CP^n$ be a continuous map with the property that $f^*:H^2(\CP^n,\ZZ)\to H^2(\CP^n,\ZZ)\cong \ZZ$ is the multiplication-by-$d$ map for some $d\in \ZZ$. Then, $f^*:H^k(\CP^n,\ZZ)\to H^k(\CP^n,\ZZ)$ is the multiplication-by-$d^m$ map for $k=2m\leq 2n$ and the zero map otherwise.
 \end{proposition*}
 \begin{proof}
- We have that under the ring structure endowed upon $H^*(\CP^n,\ZZ)$ by addition and the cup product, $H^*(\CP^n,\ZZ)\cong \ZZ[c]/\idl{c^{n+1}}$ where $\deg c=2$. 
+ We have that under the ring structure endowed upon $H^*(\CP^n,\ZZ)$ by addition and the cup product, $H^*(\CP^n,\ZZ)\cong \ZZ[c]/\idl{c^{n+1}}$ where $\deg c=2$. Thus, $H^2(\CP^n)=\ZZ\{c\}$, so the map $f^*:H^2(\CP^n)\to H^2 (\CP^n)$ maps $c\mapsto d*c$. Then, the map $f^*$ on $H^*(\CP^n)$ maps $c^m\mapsto (dc)^m=d^mc^m$ and hence induces the multiplication-by-$d^m$ on $H^{2m}(\CP^n)=\ZZ\{c^m\}$. On the other hand, if $k$ is odd or $k>2n$, then $H^k(\CP^n)=0$, so necessarily, $f^*$ is the zero map.
 \end{proof}
 
+\prt{2}
+\begin{lemma}\label{1bcoin}
+	$f_*:H_{k}(\CP^n,\ZZ)\to H_k(\CP^n,\ZZ)$ is the multiplication-by-$d^m$ map for $0\leq k=2m\leq 2n$ and the zero map otherwise.
+\end{lemma}
+\begin{subproof}[Proof of Lemma \ref{1bcoin}]
+We first note that, as before, if $k$ is odd, $k<0$ or $k>2n$, then $H_k(\CP^n)=0$ so $f_*$ is, necessarily, the zero map. We now assume $k=2m$. We note by naturality of the Universal Coefficient Theorem, we have the commuting diagram of \eqref{1bUCT} with exactness along the rows.
+\begin{equation}\label{1bUCT}
+	\begin{tikzcd}
+	0\arrow[r]&\ext(H_{k-1}(\CP^n),\ZZ)\arrow[r]&H^k(\CP^n,\ZZ)\arrow[r,"h"]&\hom(H_k(\CP^n),\ZZ)\arrow[r]&0\\
+	0\arrow[r]&\ext(H_{k-1}(\CP^n),\ZZ)\arrow[r]\arrow[u,"(f_*)^*"]&H^k(\CP^n,\ZZ)\arrow[r,"h"]\arrow[u,"f^*"]&\hom(H_k(\CP^n),\ZZ)\arrow[r]\arrow[u,"(f_*)^*"]&0
+	\end{tikzcd}
+\end{equation}
+
+As $k$ is even by assumption, we have that $H_{k-1}(\CP^n)=0$. Hence, $\ext(H_{k-1}(\CP^n),\ZZ)=0$, and we are left with the diagram of \eqref{1bUCT'}
+\begin{equation}\label{1bUCT'}
+\begin{tikzcd}
+0\arrow[r]&H^k(\CP^n,\ZZ)\arrow[r,"h"]&\hom(H_k(\CP^n),\ZZ)\arrow[r]&0\\
+0\arrow[r]&H^k(\CP^n,\ZZ)\arrow[r,"h"]\arrow[u,"f^*"]&\hom(H_k(\CP^n),\ZZ)\arrow[r]\arrow[u,"(f_*)^*"]&0
+\end{tikzcd}
+\end{equation}
+Thus, in particular $h:H^k(\CP^n,\ZZ)\cong \ZZ\to \hom(H_k(\CP^n),\ZZ)\cong \ZZ$ is an isomorphism and hence the multiplication-by-$\pm1$ map. In either case (that is, $-1$ or $+1$), a very simple diagram-chase shows that $(f_*)^*$ is necessarily the multiplication-by-$d^m$ map. We fix a generator $g\in H_k(\CP^n)$ and let $\hom(H_k(\CP^n),\ZZ)=\{\phi_\ell\}_{\ell\in\ZZ}$ where $\phi_\ell:g\mapsto \ell $. We fix the isomorphism to $\ZZ$ mapping $\phi_1\to 1$ as an identification. We have that $(f_*)^*:\phi_1\mapsto \phi_1\circ f_*$, and as this is the multiplication-by-$d^m$ map, we have that $\phi_1\circ f_*=\phi_{d^m}$. As $\phi_1$ is the identity map on $\ZZ$ under the identification $H_k(\CP^n)\cong \ZZ$ by $g\mapsto 1$ (which is chosen to be compatible with our identification $ \hom(H_k(\CP^n),\ZZ)\cong \ZZ$, we have that indeed $f_*:g\to d^m g$ and is hence the multiplication-by-$d^m$ map.
+\end{subproof}
+\begin{proposition*}[Main proposition of problem]
+	$\tau(f)=\sum_{m=0}^nd^m$. In particular, $f$ has a fixed point unless $n\equiv 1 \mod 2$ and the induced map of $f^2$ on homology is the identity.  
+\end{proposition*}
+\begin{proof}
+	We note that by Lemma \ref{1bcoin}, \begin{equation*}\mathrm{tr}(f_*:H_k(\CP^n)\to H_k(\CP^n))=\begin{cases}
+d^m&0\leq k=2m\leq 2n\\0&\text{else}.
+	\end{cases}\end{equation*}
+\end{proof}
+Thus, the odd terms in the summation for $\tau(f)$ uniformly vanish and we are left to sum the even terms. We note that the function $F(d)=1+d+\ldots+d^n$ divides $1-d^{n+1}$ and hence has zeros all (possibly non-primitive) $(n+1)$-st roots of unity not including $1$. Thus, $\tau(f)=0$ (and thus $f$ is fixed point free) only when $(n+1)$ is odd and $f_*:H_k(\CP^n)\to H_k(\CP^n)$ is the multiplication-by-$(-1)$ map. 
+\prt{3}
+\begin{proposition*}
+	There are no orientation-reversing maps of $\CP^n$ for even $n$.
+\end{proposition*}
+\begin{proof}
+We say $f$ is orientation-reversing on $\CP^n$ if $f^*$ is multiplication by a negative number on $H_{2n}(\CP^n)$. As we have already seen, $f^*$ is the multiplication-by-$d^n$ map on $H_{2n}(\CP^n)$. Thus, if $n$ is even, $d^n$ is necessarily nonnegative and $f$ is not orientation-reversing.
+\end{proof}
+\prob{2}
+\prob{3}
+\begin{proposition*}
+	We let $p:\RR^k\to \RR$ be a homogeneous degree-$m$ polynomial, and $V_a=p^{-1}(a)$ where $0\neq a\in \RR$. Then, $V_a$ is a submanifold of $\RR^k$ of dimension $k-1$ and for $a\neq b$ with $ab>0$, $V_a$ and $V_b$ are diffeomorphic.
+\end{proposition*}
+\begin{proof}
+	We note that if $a$ is a regular value for $p$, the pre-image theorem asserts that $V_a$ is a submanifold of dimension $k-1$ indeed. We thus wish to show that $a$ is a regular value for $p$. By Euler's identity for homogeneous polynomials, we have that for $x\in V_a$,
+	$$\sum_{j=1}^kx_i\pydx{p}{x_i}(x)=mp(x)=ma$$
+	Thus, we have that for some $i$ $\pydx{p}{x_i}(x)\neq 0$, so $dp_x$ is indeed surjective as its target is one-dimensional.
+	
+	Now, to see that $V_a$ and $V_b$ are related by diffeomorphism, we let $f_t:\RR^k\to \RR^k$ be the isomorphism scaling by $t=\left(\frac{a}{b}\right)^{1/m}$. As $\frac{a}{b}>0$, such a $t$ certainly exists in the reals, and it is clear that multiplication by a scalar is a diffeomorphism on real space. Furthermore, we see that for $x\in V_b$, $p(f_t(x))=p(tx)=t^dp(x)=\frac{a}{b}*b=a$, so $f_t(x)\in V_a$; an identical argument shows that $f_t^{-1}$ maps $V_a$ to $V_b$. As the embeddings $V_a\hookleftarrow \RR^k$, $V_b\hookleftarrow \RR^k$ are diffeomorphisms onto their images, we now have that $f_t:V_b\to V_a$ is the composition of diffeomorphisms and hence itself a diffeomorphism.  
+	
+\end{proof}
 
 \end{document}
